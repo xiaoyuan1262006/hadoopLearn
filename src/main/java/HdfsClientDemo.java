@@ -15,20 +15,20 @@ import java.net.URI;
  * @Version: 1.0
  */
 public class HdfsClientDemo {
-    public static void main(String[] args) {
-        //会从项目的classpath中加载core-default.xml hdfs-default.xml core-site.xlm
-        Configuration conf = new Configuration();
-        conf.set("dfs.replication","2"); //指定本客户端上传文件到hdfs需要保存的副本2
-        conf.set("dfs.blocksize","64m"); //指定本客户端上传文件到hdfs切换的规格大小
-        try {
-            //构造一个访问指定HDFS系统的客户端对象 参数1 HDFS系统的uri
-            FileSystem fileSystem = FileSystem.get(new URI("hdfs://192.168.222.4:9000/"),conf,"root");
-            fileSystem.copyFromLocalFile(new Path("G:\\Downloads\\scala-2.12.8.tgz"),new Path("/bigdata/"));
-            fileSystem.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        //会从项目的classpath中加载core-default.xml hdfs-default.xml core-site.xlm
+//        Configuration conf = new Configuration();
+//        conf.set("dfs.replication","2"); //指定本客户端上传文件到hdfs需要保存的副本2
+//        conf.set("dfs. ","64m"); //指定本客户端上传文件到hdfs切换的规格大小
+//        try {
+//            //构造一个访问指定HDFS系统的客户端对象 参数1 HDFS系统的uri
+//            FileSystem fileSystem = FileSystem.get(new URI("hdfs://192.168.222.4:9000/"),conf,"root");
+//            fileSystem.copyFromLocalFile(new Path("G:\\Downloads\\scala-2.12.8.tgz"),new Path("/bigdata/"));
+//            fileSystem.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 
