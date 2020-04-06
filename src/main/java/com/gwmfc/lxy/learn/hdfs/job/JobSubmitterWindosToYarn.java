@@ -32,7 +32,7 @@ public class JobSubmitterWindosToYarn {
         Configuration conf = new Configuration();
         conf.set("fs.defaultFS","hdfs://192.168.222.4:9000"); //设置job运行时要访问的文件系统
         conf.set("mapreduce.framework.name","yarn"); //设置job提交到哪里运行
-        conf.set("yarn.resourcemanager.hostname","192.168.222.4");
+        conf.set("yarn.resourcemanager.hostname","192.168.222.10");
 
         conf.set("mapreduce.app-submission.cross-platform","true"); //如果从window系统上运行这个job提交客户端程序，需要加这个跨平台提交参数
         Job job = Job.getInstance(conf);
@@ -49,13 +49,13 @@ public class JobSubmitterWindosToYarn {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         Path output = new Path("/wordcount/output");
-        FileSystem fs = FileSystem.get(new URI("hdfs://192.168.222.4:9000/"),conf,"root");
+        FileSystem fs = FileSystem.get(new URI("hdfs://192.168.222.4:9000"),conf,"root");
         if(fs.exists(output)){
             fs.delete(output,true);
         }
 
         //分装参数：本次处理数据的输入路径，输出路径
-        FileInputFormat.setInputPaths(job,new Path("/aaa"));
+        FileInputFormat.setInputPaths(job,new Path("/wordcount"));
         FileOutputFormat.setOutputPath(job,output);
 
         //分装参数：想要启动的reduce task数量

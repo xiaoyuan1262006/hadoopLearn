@@ -27,7 +27,9 @@ import java.util.Arrays;
 public class HadoopClientDemo {
     public static void main(String[] args) throws Exception{
         Configuration configuration = new Configuration();
+        //副本数量
         configuration.set("dfs.replication","2");
+        //切块的规格大小
         configuration.set("dfs.blocksize","3m");
         FileSystem fs = FileSystem.get(new URI("hdfs://master:9000"),configuration,"root");
         fs.copyFromLocalFile(new Path("file:/G:/Downloads/cfs12.log"),new Path("/aaa"));
