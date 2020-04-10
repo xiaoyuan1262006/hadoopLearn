@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration> 
+
+<!-- 开启RM高可用 -->
+<property>
+<name>yarn.resourcemanager.ha.enabled</name>
+<value>true</value>
+</property>
+<!-- 指定RM的cluster id -->
+<property>
+<name>yarn.resourcemanager.cluster-id</name>
+<value>yrc</value>
+</property>
+<!-- 指定RM的逻辑名字 -->
+<property>
+<name>yarn.resourcemanager.ha.rm-ids</name>
+<value>rm1,rm2</value>
+</property>
+<!-- 分别指定RM的地址 -->
+<property>
+<name>yarn.resourcemanager.hostname.rm1</name>
+<value>slave01</value>
+</property>
+<property>
+<name>yarn.resourcemanager.hostname.rm2</name>
+<value>slave02</value>
+</property>
+<!-- 指定zk集群地址 -->
+<property>
+<name>yarn.resourcemanager.zk-address</name>
+<value>master:2181,slave01:2181,slave02:2181</value>
+</property>
+
+ <!-- Site specific YARN configurationproperties -->
+
+<property>
+
+       <name>yarn.nodemanager.aux-services</name>
+
+       <value>mapreduce_shuffle</value>
+
+</property>
+
+<property>
+
+       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+
+       <value>org.apache.hadoop.mapred.shuffleHandler</value>
+
+</property>
+
+<!--启用日志聚集功能-->
+
+ <property>
+
+   <name>yarn.log-aggregation-enable</name>
+
+   <value>true</value>
+
+ </property>
+
+<!--在HDFS上聚集的日志最多保存多长时间-->
+
+ <property>
+
+   <name>yarn.log-aggregation.retain-seconds</name>
+
+   <value>86400</value>
+
+ </property>    
+
+<property>
+
+<discription>单个任务可申请最少内存，默认1024MB</discription> 
+
+<name>yarn.scheduler.minimum-allocation-mb</name>
+
+<value>64</value>
+
+</property>
+
+
+<property>
+
+<discription>单个任务可申请最大内存，默认8192MB</discription> 
+
+<name>yarn.scheduler.maximum-allocation-mb</name>
+
+<value>1920</value>
+
+</property>
+
+<property>
+
+<name>yarn.nodemanager.resource.memory-mb</name>
+
+<discription>每个节点可用内存,单位MB</discription> 
+
+<value>2048</value>
+
+</property>
+
+<property>
+
+<name>yarn.nodemanager.resource.cpu-vcores</name>
+
+<value>2</value>
+ 
+</property>
+
+
+<property>
+
+<description>Ratio between virtualmemory to physical memory when
+
+setting memory limits for containers.Container allocations are
+
+expressed in terms of physical memory, andvirtual memory usage
+
+is allowed to exceed this allocation bythis ratio.
+
+</description>
+
+<name>yarn.nodemanager.vmem-pmem-ratio</name>
+
+<value>4</value>
+
+</property>
+</configuration>
